@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Pressable, Text} from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import {
   useShow,
   useAppActive,
@@ -9,13 +9,14 @@ import {
   useUnmount,
   useResize,
 } from 'react-native-tools-next';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 export default () => {
   const navigation = useNavigation();
 
-  const onClick = () => {
-    navigation.navigate('/user/index');
+  const navigateTo: Function = (name: string): void => {
+    // @ts-ignore
+    navigation.navigate(name);
   };
 
   // Called when the application from background to foreground
@@ -55,8 +56,24 @@ export default () => {
 
   return (
     <View>
-      <Pressable onPress={onClick}>
-        <Text>home/index</Text>
+      <Text style={{ marginBottom: 10 }}>home/index</Text>
+      <Pressable onPress={() => navigateTo('/user/index')}>
+        <Text>
+          {`Test [
+              useShow,
+              useAppActive,
+              useAppInactive,
+              useHide,
+              useMount,
+              useResize,
+              useUnmount
+          ]
+          `}
+        </Text>
+      </Pressable>
+
+      <Pressable onPress={() => navigateTo('/test/useWaitRemove')}>
+        <Text>Test useWaitRemove</Text>
       </Pressable>
     </View>
   );
