@@ -3,6 +3,7 @@
 import Home from '../pages/home/index/index';
 import User from '../pages/user/index/index';
 import WaitRemove from '../pages/test/useWaitRemove';
+import Msg from '../pages/test/msg';
 
 
 type Route = {
@@ -23,6 +24,10 @@ let pages: Route[] = [
   {
     name: '/test/useWaitRemove',
     component: WaitRemove,
+  },
+  {
+    name: '/test/msg',
+    component: Msg,
   },
 ];
 

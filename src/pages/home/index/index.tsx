@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, Text } from 'react-native';
+import { View, Pressable, Text, Alert } from 'react-native';
 import {
   useShow,
   useAppActive,
@@ -8,10 +8,21 @@ import {
   useHide,
   useUnmount,
   useResize,
+  msg,
 } from 'react-native-tools-next';
 import { useNavigation } from '@react-navigation/native';
 
 export default () => {
+
+  React.useEffect(() => {
+    const subscribe = msg.on('home', (message) => {
+      Alert.alert(
+        `home page message received:::${message}`
+      );
+    });
+    return subscribe.remove;
+  }, []);
+
   const navigation = useNavigation();
 
   const navigateTo: Function = (name: string): void => {
@@ -74,6 +85,10 @@ export default () => {
 
       <Pressable onPress={() => navigateTo('/test/useWaitRemove')}>
         <Text>Test useWaitRemove</Text>
+      </Pressable>
+
+      <Pressable style={{ marginVertical:10 }} onPress={() => navigateTo('/test/msg')}>
+        <Text>Test msg</Text>
       </Pressable>
     </View>
   );
