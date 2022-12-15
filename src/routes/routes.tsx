@@ -1,8 +1,6 @@
-/* eslint-disable prettier/prettier */
-
 import Home from '../pages/home/index/index';
 import User from '../pages/user/index/index';
-import WaitRemove from '../pages/test/useWaitRemove';
+import WaitReturn from '../pages/test/useWaitReturn';
 import Msg from '../pages/test/msg';
 
 
@@ -22,8 +20,8 @@ let pages: Route[] = [
     component: User,
   },
   {
-    name: '/test/useWaitRemove',
-    component: WaitRemove,
+    name: '/test/useWaitReturn',
+    component: WaitReturn,
   },
   {
     name: '/test/msg',

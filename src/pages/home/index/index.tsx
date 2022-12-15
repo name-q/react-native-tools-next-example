@@ -83,8 +83,8 @@ export default () => {
         </Text>
       </Pressable>
 
-      <Pressable onPress={() => navigateTo('/test/useWaitRemove')}>
-        <Text>Test useWaitRemove</Text>
+      <Pressable onPress={() => navigateTo('/test/useWaitReturn')}>
+        <Text>Test useWaitReturn</Text>
       </Pressable>
 
       <Pressable style={{ marginVertical:10 }} onPress={() => navigateTo('/test/msg')}>

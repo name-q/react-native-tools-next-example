@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Alert } from 'react-native';
-import { useWaitRemove } from 'react-native-tools-next';
+import { useWaitReturn } from 'react-native-tools-next';
 import { Hoc } from '../../../components';
 
-const TestWaitRemove = () => {
+const TestWaitReturn = () => {
   const exitFun = (exit: Function) =>
     Alert.alert(
-      'useWaitRemove Test',
+      'useWaitReturn Test',
       'Are you sure to discard them and leave the screen?',
       [
         {
@@ -21,13 +21,13 @@ const TestWaitRemove = () => {
         },
       ],
     );
-  useWaitRemove(exitFun);
+  useWaitReturn(exitFun);
   return (
     <View>
-      <Text style={{ marginBottom: 10 }}>test/useWaitRemove</Text>
+      <Text style={{ marginBottom: 10 }}>test/useWaitReturn</Text>
       <Text>Hi man click "BACK" above</Text>
     </View>
   );
 };
 
-export default Hoc(TestWaitRemove);
+export default Hoc(TestWaitReturn);
