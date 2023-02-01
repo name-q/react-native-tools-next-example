@@ -1,28 +1,10 @@
 import React from 'react';
-import { View, Pressable, Text, Alert } from 'react-native';
-import {
-  useShow,
-  useAppActive,
-  useAppInactive,
-  useMount,
-  useHide,
-  useUnmount,
-  useResize,
-  msg,
-} from 'react-native-tools-next';
-import { useNavigation } from '@react-navigation/native';
+import {View, SafeAreaView, Text} from 'react-native';
+import {usePermissions, useShow} from 'react-native-tools-next';
+import {useNavigation} from '@react-navigation/native';
+import {PERMISSIONS} from 'react-native-permissions';
 
 export default () => {
-
-  React.useEffect(() => {
-    const subscribe = msg.on('home', (message) => {
-      Alert.alert(
-        `home page message received:::${message}`
-      );
-    });
-    return subscribe.remove;
-  }, []);
-
   const navigation = useNavigation();
 
   const navigateTo: Function = (name: string): void => {
@@ -30,71 +12,30 @@ export default () => {
     navigation.navigate(name);
   };
 
-  // Called when the application from background to foreground
-  useAppActive(() => {
-    console.log('Home useAppActive');
-  });
+  const [status, request, openSettings] = usePermissions([
+    PERMISSIONS.IOS.CAMERA,
+    PERMISSIONS.ANDROID.CAMERA,
+  ]);
 
-  // Called when the application from foreground to background
-  useAppInactive(() => {
-    console.log('Home useAppInactive');
-  });
-
-  // Called when the page load
-  useMount(() => {
-    console.log('Home useMount');
-  });
-
-  // Called when the page is displayed or in the application from background to foreground
-  useShow(() => {
-    console.log('Home useShow');
-  });
-
-  // Called when the page is hidden or in the application from foreground to background
-  useHide(() => {
-    console.log('Home useHide');
-  });
-
-  // Called when the page is unloaded
-  useUnmount(() => {
-    console.log('Home useUnmount');
-  });
-
-  // Called after the page window resize
-  useResize(() => {
-    console.log('Home useResize');
+  useShow(async () => {
+    let pass = await status();
+    if (!pass) {
+      try {
+        await request();
+        navigateTo('qrcode');
+      } catch {
+        openSettings();
+      }
+    } else {
+      navigateTo('qrcode');
+    }
   });
 
   return (
-    <View>
-      <Text style={{ marginBottom: 10 }}>home/index</Text>
-      <Pressable onPress={() => navigateTo('/user/index')}>
-        <Text>
-          {`Test [
-              useShow,
-              useAppActive,
-              useAppInactive,
-              useHide,
-              useMount,
-              useResize,
-              useUnmount
-          ]
-          `}
-        </Text>
-      </Pressable>
-
-      <Pressable onPress={() => navigateTo('/test/useWaitRemove')}>
-        <Text>Test useWaitRemove</Text>
-      </Pressable>
-
-      <Pressable style={{ marginVertical: 10 }} onPress={() => navigateTo('/test/usePermissions')}>
-        <Text>Test usePermissions</Text>
-      </Pressable>
-
-      <Pressable onPress={() => navigateTo('/test/msg')}>
-        <Text>Test msg</Text>
-      </Pressable>
-
+    <View style={{backgroundColor: '#333', flex: 1}}>
+      <SafeAreaView style={{alignItems: 'center', justifyContent: 'center'}}>
+        <Text>获取相机扫码权限</Text>
+      </SafeAreaView>
     </View>
   );
 };

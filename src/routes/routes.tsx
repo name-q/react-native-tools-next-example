@@ -1,5 +1,5 @@
 import Home from '../pages/home/index/index';
-import User from '../pages/user/index/index';
+import Qrcode from '../pages/user/qrcode/index';
 import WaitReturn from '../pages/test/useWaitReturn';
 import Permissions from '../pages/test/usePermissions';
 
@@ -18,8 +18,8 @@ let pages: Route[] = [
     component: Home,
   },
   {
-    name: '/user/index',
-    component: User,
+    name: 'qrcode',
+    component: Qrcode,
   },
   {
     name: '/test/useWaitReturn',

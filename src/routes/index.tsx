@@ -10,7 +10,11 @@ export default () => {
     <NavigationContainer>
       <RootStack.Navigator>
         {pages.map((page, index) => (
-          <RootStack.Screen key={index} {...page} />
+          <RootStack.Screen
+            key={index}
+            {...page}
+            options={{headerShown: false}}
+          />
         ))}
       </RootStack.Navigator>
     </NavigationContainer>

@@ -141,6 +141,8 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+        multiDexEnabled true
+        missingDimensionStrategy 'react-native-camera', 'general'
 
         if (isNewArchitectureEnabled()) {
             // We configure the CMake build only if you decide to opt-in for the New Architecture.
@@ -249,6 +251,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':react-native-camera')
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //noinspection GradleDynamicVersion
