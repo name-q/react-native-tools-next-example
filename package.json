@@ -9,7 +9,9 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "postinstall": "patch-package",
-    "linkfont": "sudo npx react-native-asset"
+    "linkfont": "sudo npx react-native-asset",
+    "createkey": "keytool -genkeypair -v -storetype PKCS12 -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000",
+    "build:android":"cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
