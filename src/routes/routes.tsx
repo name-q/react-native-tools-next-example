@@ -4,7 +4,8 @@ import WaitReturn from '../pages/test/useWaitReturn';
 import Permissions from '../pages/test/usePermissions';
 
 import Msg from '../pages/test/msg';
-
+import Debounce from '../pages/test/debounce';
+import Throttle from '../pages/test/throttle';
 
 type Route = {
   name: string;
@@ -32,6 +33,14 @@ let pages: Route[] = [
   {
     name: '/test/msg',
     component: Msg,
+  },
+  {
+    name: '/test/debounce',
+    component: Debounce,
+  },
+  {
+    name: '/test/throttle',
+    component: Throttle,
   },
 ];
 

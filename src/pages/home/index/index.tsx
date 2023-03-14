@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Pressable, Text, Alert } from 'react-native';
+import {View, Pressable, Text, Alert} from 'react-native';
 import {
   useShow,
   useAppActive,
@@ -10,15 +10,12 @@ import {
   useResize,
   msg,
 } from 'react-native-tools-next';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default () => {
-
   React.useEffect(() => {
-    const subscribe = msg.on('home', (message) => {
-      Alert.alert(
-        `home page message received:::${message}`
-      );
+    const subscribe = msg.on('home', message => {
+      Alert.alert(`home page message received:::${message}`);
     });
     return subscribe.remove;
   }, []);
@@ -67,7 +64,7 @@ export default () => {
 
   return (
     <View>
-      <Text style={{ marginBottom: 10 }}>home/index</Text>
+      <Text style={{marginBottom: 10}}>home/index</Text>
       <Pressable onPress={() => navigateTo('/user/index')}>
         <Text>
           {`Test [
@@ -87,7 +84,9 @@ export default () => {
         <Text>Test useWaitRemove</Text>
       </Pressable>
 
-      <Pressable style={{ marginVertical: 10 }} onPress={() => navigateTo('/test/usePermissions')}>
+      <Pressable
+        style={{marginVertical: 10}}
+        onPress={() => navigateTo('/test/usePermissions')}>
         <Text>Test usePermissions</Text>
       </Pressable>
 
@@ -95,6 +94,15 @@ export default () => {
         <Text>Test msg</Text>
       </Pressable>
 
+      <Pressable
+        style={{marginVertical: 10}}
+        onPress={() => navigateTo('/test/debounce')}>
+        <Text>Test debounce</Text>
+      </Pressable>
+
+      <Pressable onPress={() => navigateTo('/test/throttle')}>
+        <Text>Test throttle</Text>
+      </Pressable>
     </View>
   );
 };
